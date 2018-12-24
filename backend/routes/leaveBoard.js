@@ -5,15 +5,17 @@ let {hash, validateUserSession} = require("./utils.js")
 let apiName = __filename.split("\\").pop().slice(0, -3)
 router.post("/" + apiName, async(req, res) => {
   try {
-    let {session} = req.body
+    let {session} = req.body // newBoardData: {name}
 
     if(!(await validateUserSession(session)))
       return res.status(401).end()
 
     let userId = (await client.query("SELECT id FROM sessions WHERE value = $1", [session])).rows[0].id
-    let invitations = (await client.query("SELECT b.id, a.username, c.name FROM users a JOIN board_invitation b ON a.id = b.user_id_sender JOIN boards c ON b.board_id = c.id WHERE b.user_id_invitee = $1", [userId])).rows
+    if((await client.query("SELECT id FROM user_to_board WHERE user_id = $1", [userId])).rows.length == 0)
+      return res.status(404).end()
+    await client.query("DELETE FROM user_to_board WHERE user_id = $1", [userId])
 
-    res.end(JSON.stringify(invitations))
+    res.end()
   } catch(e) {
     console.log(e)
     res.status(500).end()

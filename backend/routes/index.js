@@ -1,7 +1,7 @@
 let express = require("express")
 let router = express.Router()
 
-let apiNames = ["register", "login", "createBoard", "deleteBoard", "editBoard", "viewMyBoards", "sendBoardInvitation", "viewBoardInvitations"]
+let apiNames = ["register", "login", "createBoard", "deleteBoard", "editBoard", "viewMyBoards", "sendBoardInvitation", "viewBoardInvitations", "answerBoardInvitation", "leaveBoard"]
 
 router.use(express.json())
 for(let apiName of apiNames)

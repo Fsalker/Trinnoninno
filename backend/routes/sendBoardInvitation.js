@@ -17,6 +17,8 @@ router.post("/" + apiName, async(req, res) => {
       return res.status(401).end()
     if((await client.query("SELECT id FROM board_invitation WHERE user_id_sender = $1 AND user_id_invitee = $2 AND board_id = $3", [userId, userIdInvitee, boardId])).rows.length > 0)
       return res.status(409).end()
+    if((await client.query("SELECT id FROM user_to_board WHERE user_id = $1 AND board_id = $2", [userIdInvitee, boardId])).rows.length > 0)
+      return res.status(409).end()
 
     await client.query("INSERT INTO board_invitation(user_id_sender, user_id_invitee, board_id) VALUES($1, $2, $3)", [userId, userIdInvitee, boardId])
 
