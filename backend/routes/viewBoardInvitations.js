@@ -5,22 +5,15 @@ let {hash, validateUserSession} = require("./utils.js")
 let apiName = __filename.split("\\").pop().slice(0, -3)
 router.post("/" + apiName, async(req, res) => {
   try {
-    let {session, usernameInvitee, boardId} = req.body
+    let {session} = req.body
 
     if(!(await validateUserSession(session)))
       return res.status(401).end()
 
     let userId = (await client.query("SELECT id FROM sessions WHERE value = $1", [session])).rows[0].id
-    let userIdInvitee = (await client.query("SELECT id FROM users WHERE username = $1", [usernameInvitee])).rows[0].id
+    let invitations = (await client.query("SELECT a.username, c.name FROM users a JOIN board_invitation b ON a.id = b.user_id_sender JOIN boards c ON b.board_id = c.id WHERE b.user_id_invitee = $1", [userId])).rows
 
-    if((await client.query("SELECT can_manage_users FROM user_to_board WHERE user_id = $1", [userId])).rows[0].can_manage_users != true)
-      return res.status(401).end()
-    if((await client.query("SELECT id FROM board_invitation WHERE user_id_sender = $1 AND user_id_invitee = $2 AND board_id = $3", [userId, userIdInvitee, boardId])).rows.length > 0)
-      return res.status(409).end()
-
-    await client.query("INSERT INTO board_invitation(user_id_sender, user_id_invitee, board_id) VALUES($1, $2, $3)", [userId, userIdInvitee, boardId])
-
-    res.end()
+    res.end(JSON.stringify(invitations))
   } catch(e) {
     console.log(e)
     res.status(500).end()
