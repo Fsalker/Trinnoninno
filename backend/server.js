@@ -7,8 +7,8 @@ const INITIALISING_DB = false
 let runExpress = () => {
     let app = express()
     app.use(mainRouter)
-    app.listen(process.env.PORT)
-    console.log("Listening on PORT "+process.env.PORT)
+    app.listen(process.env.WEB_PORT)
+    console.log("Listening on PORT "+process.env.WEB_PORT)
 }
 
 ;(async () => {
