@@ -1,8 +1,8 @@
 let router = require("express").Router()
 let client; (async() => client = await require("../database/connect.js")())()
-let {hash, validateUserSession} = require("./utils.js")
+let {validateUserSession, getApiName} = require("./utils.js")
 
-let apiName = __filename.split("\\").pop().slice(0, -3)
+let apiName = getApiName(__filename)
 router.post("/" + apiName, async(req, res) => {
   try {
     let {session, invitationId, accepting} = req.body
@@ -10,7 +10,7 @@ router.post("/" + apiName, async(req, res) => {
     if(!(await validateUserSession(session)))
       return res.status(401).end()
 
-    let userId = (await client.query("SELECT id FROM sessions WHERE value = $1", [session])).rows[0].id
+    let userId = (await client.query("SELECT user_id FROM sessions WHERE value = $1", [session])).rows[0].user_id
     let resBoards = await client.query("SELECT board_id FROM board_invitation WHERE id = $1 AND user_id_invitee = $2", [invitationId, userId])
     if(resBoards.rows.length == 0)
       return res.status(404).end()

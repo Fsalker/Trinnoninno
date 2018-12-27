@@ -1,8 +1,8 @@
 let router = require("express").Router()
 let client; (async() => client = await require("../database/connect.js")())()
-let {hash, createUserSession} = require("./utils.js")
+let {hash, validateUserSession, createUserSession, getApiName} = require("./utils.js")
 
-let apiName = __filename.split("\\").pop().slice(0, -3)
+let apiName = getApiName(__filename)
 router.post("/" + apiName, async(req, res) => {
   try {
     let {username, password} = req.body

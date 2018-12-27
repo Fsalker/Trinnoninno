@@ -8,7 +8,7 @@ module.exports = async(client) => {
 
   await client.query(`CREATE TABLE users(
     id SERIAL PRIMARY KEY,
-    username TEXT UNIQUE,
+    username TEXT UNIQUE NOT NULL,
     password TEXT,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`)
@@ -23,14 +23,14 @@ module.exports = async(client) => {
   await client.query(`CREATE TABLE boards(
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
-    name TEXT,
+    name TEXT NOT NULL,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`)
 
   await client.query(`CREATE TABLE tasks(
     id SERIAL PRIMARY KEY,
     board_id INTEGER,
-    title TEXT,
+    title TEXT NOT NULL,
     description TEXT,
     creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`)

@@ -11,6 +11,8 @@ module.exports = {
     return session
   },
 
+  getApiName: fileName => fileName.split("\\").pop().slice(0, -3),
+
   //frontendStringIsClean: str =>  // No XSS for you :D
 
   validateUserSession: async(session) => (await client.query("SELECT id FROM sessions WHERE value=$1", [session])).rows.length > 0
