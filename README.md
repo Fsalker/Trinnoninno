@@ -1,4 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Available Back End Scripts
+
+### `npm run backend`
+Starts the Back End API server.
+
+### `npm run "backend tests"`
+
+Runs the tests against the API Server.
+
+---
 
 ## Available Scripts
 
