@@ -1,0 +1,6 @@
+.alert{
+    /*background-color: #FF5B5B;*/
+    color: red;
+    margin-bottom: 15px;
+    display: inline-block;
+}
