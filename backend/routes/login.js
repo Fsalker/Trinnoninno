@@ -8,12 +8,12 @@ router.post("/" + apiName, async(req, res) => {
     let {username, password} = req.body
     password = hash(password)
 
-    if((await client.query("SELECT id FROM users WHERE username = $1", [username])).rows.length == 0)
+    if((await client.query("SELECT id FROM users WHERE LOWER(username) = LOWER($1)", [username])).rows.length == 0)
       return res.status(404).end()
 
-    if((await client.query("SELECT id FROM users WHERE username = $1 AND password = $2", [username, password])).rows.length == 0)
+    if((await client.query("SELECT id FROM users WHERE LOWER(username) = LOWER($1) AND password = $2", [username, password])).rows.length == 0)
       return res.status(401).end()
-    let userId = (await client.query("SELECT id FROM users WHERE username = $1", [username])).rows[0].id
+    let userId = (await client.query("SELECT id FROM users WHERE LOWER(username) = LOWER($1)", [username])).rows[0].id
     let session = await createUserSession(userId)
     res.end(JSON.stringify({session}))
   } catch(e) {

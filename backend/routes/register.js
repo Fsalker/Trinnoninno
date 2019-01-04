@@ -8,7 +8,6 @@ router.post("/" + apiName, async(req, res) => {
     let {username, password} = req.body
     password = hash(password)
 
-    console.log("Received /register request")
     if((await client.query("SELECT id FROM users WHERE username = $1", [username])).rows.length > 0)
       return res.status(409).end()
     let userId = (await client.query("INSERT INTO users(username, password) VALUES ($1, $2) RETURNING id", [username, password])).rows[0].id

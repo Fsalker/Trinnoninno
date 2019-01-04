@@ -1,5 +1,6 @@
 let crypto = require("crypto")
 let client; (async() => client = await require("../database/connect.js")())()
+let {SESSION_LIFETIME_SECONDS} = require("../config/index.js")
 
 module.exports = {
   SALT: "afhdsoigfdohbjodigbpogdhpod",
@@ -15,5 +16,10 @@ module.exports = {
 
   //frontendStringIsClean: str =>  // No XSS for you :D
 
-  validateUserSession: async(session) => (await client.query("SELECT id FROM sessions WHERE value=$1", [session])).rows.length > 0
+  validateUserSession: async(session) => {
+    let r = (await client.query(`SELECT id FROM sessions WHERE value=$1 AND creation_date > (CURRENT_TIMESTAMP - INTERVAL '${SESSION_LIFETIME_SECONDS} seconds')`, [session])).rows
+    // console.log(session)
+    // console.log(r)
+    return r.length > 0
+  }
 }

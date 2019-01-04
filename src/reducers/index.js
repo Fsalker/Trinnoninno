@@ -7,6 +7,7 @@ import myBoards from "./myBoards"
 import tasks from "./tasks"
 import createTask from "./createTask"
 import session from "./session"
+import deleteAccount from "./deleteAccount"
 
 export default combineReducers({
   register,
@@ -16,5 +17,6 @@ export default combineReducers({
   myBoards,
   tasks,
   createTask,
-  session
+  session,
+  deleteAccount
 })

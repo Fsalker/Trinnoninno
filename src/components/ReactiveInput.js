@@ -2,9 +2,11 @@ import React from "react"
 import {connect} from "react-redux"
 
 let ReactiveInput = ({value, placehold, onchangeAction, dispatch}) => {
+  let type = placehold==="Password"?"password":"text"
+
   return (
     <div>
-      <input placeholder={`Fill in your ${placehold} here...`} value={value} onChange={(e) => dispatch(onchangeAction(e.target.value))}/>
+      <input type={type} placeholder={`${placehold}...`} value={value} onChange={(e) => dispatch(onchangeAction(e.target.value))}/>
     </div>
   )
 }

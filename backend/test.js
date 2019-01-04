@@ -48,6 +48,22 @@ describe("User lifecycle", async() => {
     console.log(session)
   })
 
+  it("Should validate session 1", async() => {
+    let data = {session: session}
+    let r = await request.post({url: `${HOST}/validateSession`, json: data})
+  })
+
+  it("Should not validate invalid session", async() => {
+    try {
+      let data = {session: session + "asd"}
+      let r = await request.post({url: `${HOST}/validateSession`, json: data})
+      throw ERROR_SHOULD_HAVE_BEEN_THROWN
+    } catch(e) {
+      if(e == ERROR_SHOULD_HAVE_BEEN_THROWN)
+        throw ERROR_SHOULD_HAVE_BEEN_THROWN
+    }
+  })
+
   it("Should register the second account", async() => {
     let data = {username: USERNAME_2, password: PASSWORD}
     let r = await request.post({url: `${HOST}/register`, json: data})

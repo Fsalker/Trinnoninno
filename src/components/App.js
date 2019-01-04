@@ -1,29 +1,20 @@
 import React from 'react';
 import {connect} from "react-redux"
 import "./App.css"
-import Register from "./Register"
-import Login from "./Login"
-import Logout from "./Logout"
+import Dashboard from "./Dashboard"
+import WelcomeScreen from "./WelcomeScreen"
 
 let App = (props) => {
-  let Session = () => {
-    if(props.session)
-      return <p>Session: {props.session}</p>
-    return null
-  }
-
   return (
     <div>
-      <Register/>
-      <Login/>
-      <Logout/>
-      <Session/>
+      <WelcomeScreen/>
+      <Dashboard/>
     </div>
   )
 }
 
 let mapStateToProps = (state) => ({
-  session: state.session.session
+  session: state.session.session,
 });
 
 export default connect(mapStateToProps)(App);

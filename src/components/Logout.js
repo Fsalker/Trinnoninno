@@ -5,7 +5,7 @@ import {updateSessionSessionhash} from "../actions";
 let Logout = (props) => {
   let logoutHandler = () => {
     localStorage.removeItem("session")
-    props.dispatch(updateSessionSessionhash())
+    props.dispatch(updateSessionSessionhash(null))
   }
 
   return (

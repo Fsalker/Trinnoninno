@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import ReactiveInput from "./ReactiveInput"
 import {updateRegisterAlert, updateRegisterPassword, updateRegisterUsername, updateSessionSessionhash} from "../actions"
 import {API_HOST} from "../config";
+import Alert from "./Alert"
 
 let Register = (props) => {
   let doRegister = async(props) => {
@@ -11,7 +12,7 @@ let Register = (props) => {
       password: props.registerPassword,
     }
     let r = await fetch(`${API_HOST}/register`, {headers: {"content-type": "application/json"}, method: "POST", body: JSON.stringify(data)})
-    if(r.status ==   200) {
+    if(r.status === 200) {
       let session = (await r.json()).session
       window.localStorage.setItem("session", session)
       props.dispatch(updateSessionSessionhash(session))
@@ -19,16 +20,10 @@ let Register = (props) => {
     }
     else {
       let alertText = "An error has occurred when logging in. Please try again!"
-      if(r.status == 409)
+      if(r.status === 409)
         alertText = "Username is already taken!"
       props.dispatch(updateRegisterAlert(alertText))
     }
-  }
-
-  let RegisterAlert = () => {
-    if(props.registerAlert)
-      return <p className="alert">{props.registerAlert}</p>
-    return null
   }
 
   return (
@@ -36,7 +31,7 @@ let Register = (props) => {
       <h2>Register</h2>
       <ReactiveInput placehold="Username" value={props.registerUsername} onchangeAction={updateRegisterUsername}/>
       <ReactiveInput placehold="Password" value={props.registerPassword} onchangeAction={updateRegisterPassword}/>
-      <RegisterAlert/>
+      <Alert text={props.registerAlert}/>
       <br/>
       <input type="Submit" value="Register" onClick={() => doRegister(props)}/>
     </div>
