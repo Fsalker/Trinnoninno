@@ -14,7 +14,7 @@ let CreateBoard = (props) => {
     if(r.status === 200) {
       //props.dispatch(updateCreateBoardName(null))
       props.dispatch(updateCreateBoardAlert(null))
-      refreshBoardList(props)
+      refreshBoardList(props.dispatch, props.session)
     }
     else
       props.dispatch(updateCreateBoardAlert("An error has occured. Try again!"))

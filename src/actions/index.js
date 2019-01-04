@@ -12,6 +12,13 @@ export const UPDATE_MY_BOARDS_CURRENTLY_OPEN_BOARD_ID = "UPDATE_MY_BOARDS_CURREN
 export const UPDATE_DELETE_ACCOUNT_USERNAME = "UPDATE_DELETE_ACCOUNT_USERNAME"
 export const UPDATE_DELETE_ACCOUNT_PASSWORD = "UPDATE_DELETE_ACCOUNT_PASSWORD"
 export const UPDATE_INVITATION_LIST = "UPDATE_INVITATION_LIST"
+export const UPDATE_INVITATION_USERNAME = "UPDATE_INVITATION_USERNAME"
+export const UPDATE_INVITATION_SEND_ALERT = "UPDATE_INVITATION_SEND_ALERT"
+export const UPDATE_EDIT_BOARD_NAME = "UPDATE_EDIT_BOARD_NAME"
+export const UPDATE_CREATE_TASK_TITLE = "UPDATE_CREATE_TASK_TITLE"
+export const UPDATE_CREATE_TASK_DESCRIPTION = "UPDATE_CREATE_TASK_DESCRIPTION"
+export const UPDATE_BOARD_TASKS_LIST = "UPDATE_BOARD_TASKS_LIST"
+export const UPDATE_BOARD_TASKS_EDITING_TASK = "UPDATE_BOARD_TASKS_EDITING_TASK"
 
 export let updateRegisterUsername = (value) => ({type: UPDATE_REGISTER_USERNAME, username: value})
 export let updateRegisterPassword = (value) => ({type: UPDATE_REGISTER_PASSWORD, password: value})
@@ -27,3 +34,10 @@ export let updateMyBoardsCurrentlyOpenBoardId = (value) => ({type: UPDATE_MY_BOA
 export let updateDeleteAccountUsername = (value) => ({type: UPDATE_DELETE_ACCOUNT_USERNAME, username: value})
 export let updateDeleteAccountPassword = (value) => ({type: UPDATE_DELETE_ACCOUNT_PASSWORD, password: value})
 export let updateInvitationList = (value) => ({type: UPDATE_INVITATION_LIST, invitationList: value})
+export let updateInvitationUsername = (value) => ({type: UPDATE_INVITATION_USERNAME, username: value})
+export let updateInvitationSendAlert = (value) => ({type: UPDATE_INVITATION_SEND_ALERT, sendInviteAlert: value})
+export let updateEditBoardName = (value) => ({type: UPDATE_EDIT_BOARD_NAME, boardName: value})
+export let updateCreateTaskTitle = (value) => ({type: UPDATE_CREATE_TASK_TITLE, title: value})
+export let updateCreateTaskDescription = (value) => ({type: UPDATE_CREATE_TASK_DESCRIPTION, description: value})
+export let updateBoardTasksList = (value) => ({type: UPDATE_BOARD_TASKS_LIST, taskList: value})
+export let updateBoardTasksEditingTask = (taskId, isBeingEdited) => ({type: UPDATE_BOARD_TASKS_EDITING_TASK, taskId, isBeingEdited})

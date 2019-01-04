@@ -11,7 +11,7 @@ let Logout = (props) => {
   return (
     <div>
       <h2>Log out</h2>
-      <input type="Submit" value="Log out" onClick={() => logoutHandler()}/>
+      <button onClick={() => logoutHandler()}>Log out</button>
     </div>
   )
 }

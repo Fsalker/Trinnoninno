@@ -5,14 +5,13 @@ import CreateBoard from "./CreateBoard"
 import BoardInvitations from "./BoardInvitations"
 import MyBoards from "./MyBoards"
 import DeleteAccount from "./DeleteAccount"
-import {updateMyBoardsList} from "../actions"
 import {refreshBoardList, refreshInvitationsList} from "../utils";
 
 let Dashboard = (props) => {
-  if(!props.session)
-    return null
-  refreshBoardList(props)
-  refreshInvitationsList(props)
+  // if(!props.session)
+  //   return null
+  refreshBoardList(props.dispatch, props.session)
+  refreshInvitationsList(props.dispatch, props.session)
 
   return (
     <div>
@@ -23,8 +22,6 @@ let Dashboard = (props) => {
       <DeleteAccount/>
     </div>
   )
-  /*
-   */
 }
 
 let mapStateToProps = (state) => ({

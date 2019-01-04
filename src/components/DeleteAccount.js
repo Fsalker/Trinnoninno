@@ -9,7 +9,7 @@ let DeleteAccount = (props) => {
   let deleteAccount = async(username, password) =>{
     let data = {username, password}
     let r = await fetch(`${API_HOST}/removeUser`, {method: "POST", body: JSON.stringify(data), headers: {"content-type": "application/json"}})
-    if(r.status == 200){
+    if(r.status === 200){
       props.dispatch(updateSessionSessionhash(null))
     }
   }
