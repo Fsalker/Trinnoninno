@@ -35,7 +35,7 @@ let initialiseApp = async() => {
   await validateSession(session)
 }
 
-let main = async(){
+let main = async() => {
   await initialiseApp()
 
   ReactDOM.render(
