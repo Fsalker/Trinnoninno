@@ -33,7 +33,7 @@ let Register = (props) => {
       <ReactiveInput placehold="Password" value={props.registerPassword} onchangeAction={updateRegisterPassword}/>
       <Alert text={props.registerAlert}/>
       <br/>
-      <input type="Submit" value="Register" onClick={() => doRegister(props)}/>
+      <button onClick={() => doRegister(props)}>Register</button>
     </div>
   )
 }

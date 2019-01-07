@@ -35,9 +35,13 @@ let initialiseApp = async() => {
   await validateSession(session)
 }
 
-initialiseApp()
+let main = async(){
+  await initialiseApp()
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>, document.getElementById('root'));
+  ReactDOM.render(
+    <Provider store={store}>
+      <App/>
+    </Provider>, document.getElementById('root'));
+}
+
+main()
