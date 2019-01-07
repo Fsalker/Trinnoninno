@@ -1,4 +1,17 @@
-## Available Back End Scripts
+## How do I run this app?
+
+1. `git pull` the repo
+2. `npm install`
+3. configure your `.env` file according to the suggestive specifications found in `example.env` (and have an appropriate PostgreSQL server live)
+4. `npm run backend` (on your API server)
+5. `npm run start` (on your HTTP server)
+
+#### Small Trivia
+
+Now, you might be wondering: "alright, I can host HTTP on your backend, but HTTPS is waaaaay better and you should make your app run securely on it aswell!!!"
+Well, go ahead and implement it yourself :^). This app's main purpose was for me to learn to code a more proper React & Redux Front End app, not a backend server. But if you'd still like to see an actual HTTPS server, check out https://github.com/Fsalker/sapunareala. It's great and very small :D.
+
+## Available Back End Scripts (my OG scripts)
 
 ### `npm run backend`
 Starts the Back End API server.
@@ -9,7 +22,7 @@ Runs the tests against the API Server.
 
 ---
 
-## Available Scripts
+## Available Scripts (scripts that have been indefinitely borrowed)
 
 In the project directory, you can run:
 
