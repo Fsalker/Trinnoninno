@@ -15,7 +15,7 @@ router.post("/" + apiName, async(req, res) => {
 
     if((await client.query("SELECT can_manage_users FROM user_to_board WHERE user_id = $1", [userId])).rows[0].can_manage_users != true)
       return res.status(401).end()
-    if((await client.query("SELECT id FROM users WHERE LOWER(username) = ($1)", [usernameInvitee])).rows.length == 0)
+    if((await client.query("SELECT id FROM users WHERE LOWER(username) = LOWER($1)", [usernameInvitee])).rows.length == 0)
       return res.status(404).end()
     if((await client.query("SELECT id FROM board_invitation WHERE user_id_sender = $1 AND user_id_invitee = $2 AND board_id = $3", [userId, userIdInvitee, boardId])).rows.length > 0)
       return res.status(409).end("user already invited")

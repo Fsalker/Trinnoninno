@@ -1,0 +1,18 @@
+th, td{
+    border: 1px solid black
+}
+
+td{
+    color: green;
+    text-align: center
+}
+
+.toggleable{
+    user-select: none;
+    cursor: pointer;
+}
+
+.toggleable:hover{
+    background-color: #CFC;
+    transition: 0.2s;
+}

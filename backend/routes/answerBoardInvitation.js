@@ -11,8 +11,6 @@ router.post("/" + apiName, async(req, res) => {
       return res.status(401).end()
 
     let userId = (await client.query("SELECT user_id FROM sessions WHERE value = $1", [session])).rows[0].user_id
-    console.log(invitationId)
-    console.log(userId)
     let resBoards = await client.query("SELECT board_id FROM board_invitation WHERE id = $1 AND user_id_invitee = $2", [invitationId, userId])
     if(resBoards.rows.length == 0)
       return res.status(404).end()

@@ -7,7 +7,6 @@ import createBoard from "./createBoard"
 import editBoard from "./editBoard"
 import myBoards from "./myBoards"
 import invitations from "./invitations"
-import tasks from "./tasks"
 import createTask from "./createTask"
 import boardTasks from "./boardTasks"
 
@@ -17,7 +16,6 @@ export default combineReducers({
   createBoard,
   invitations,
   myBoards,
-  tasks,
   createTask,
   session,
   deleteAccount,

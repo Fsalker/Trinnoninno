@@ -5,6 +5,7 @@ import InviteUser from "./InviteUser";
 import EditBoard from "./EditBoard"
 import CreateTask from "./CreateTask";
 import BoardTasks from "./BoardTasks"
+import BoardUsers from "./BoardUsers"
 import {refreshBoardTasksList} from "../utils";
 
 let Board = (props) => {
@@ -23,6 +24,7 @@ let Board = (props) => {
       <h1 style={{textAlign: "center"}}>{board.name}</h1>
       <BoardTasks/>
       {board.can_manage_tasks ? <CreateTask/> : null}
+      {board.can_manage_users ? <BoardUsers/> : null}
       {board.can_manage_users ? <InviteUser/> : null}
       {board.can_manage_board ? <EditBoard/> : null}
     </div>

@@ -1,0 +1,28 @@
+.title{
+    text-align: center;
+    margin: 0;
+}
+
+.titleInput{
+    display: block;
+    margin: 2px auto 0px auto;
+    text-align: center;
+}
+
+.descriptionInput{
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.managementButtons{
+    display: table;
+    margin-left: auto;
+}
+
+.task{
+    padding: 4px;
+    width: 400px;
+    margin-bottom: 8px;
+    border: 2px solid black;
+    background-color: #DDF;
+}
